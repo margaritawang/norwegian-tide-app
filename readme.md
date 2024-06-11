@@ -2,15 +2,11 @@
 
 A simple data visualization tool for tidal water of Norwegian harbors. NOT a real weather app.
 
-## Description
-
-An in-depth paragraph about your project and overview of use.
-
 ## Getting Started
 
 ### Prerequisites
 
-- [Node version >= 18.0](https://nodejs.org/en)
+- [Node.js version >= 18.0](https://nodejs.org/en)
 - [Homebrew](https://brew.sh/)
 - [Redis](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-on-mac-os/)
 
