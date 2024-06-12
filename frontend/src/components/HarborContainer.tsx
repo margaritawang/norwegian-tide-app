@@ -4,7 +4,7 @@ import { Button, Box, Select, Flex, Spacer, Text } from "@chakra-ui/react";
 import { harbors } from "../utils/constants";
 import { capitalize } from "../utils/capitalize";
 import { ChartArea } from "./ChartArea";
-import { MapView } from "./MapView.js";
+import { MapView } from "./MapView";
 
 type HarborContainerProps = {
   harbor: keyof typeof harbors;

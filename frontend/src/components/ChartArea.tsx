@@ -22,7 +22,7 @@ export const ChartArea = ({ harbor }: ChartAreaProps) => {
 
   if (isError || error) {
     return (
-      <Alert status="error">
+      <Alert status="error" width="80%">
         <AlertIcon />
         Error loading tidal data, please try again later.
       </Alert>

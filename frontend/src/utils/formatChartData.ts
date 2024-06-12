@@ -1,4 +1,4 @@
-import { TidalData } from "../api/types/tidaldata";
+import { TidalData } from "../api/types/TidalData";
 
 export const formatChartData = (rawData: TidalData[]) =>
   rawData.map((data) => ({
