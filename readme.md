@@ -20,7 +20,7 @@ From the project root directory, run the following to download the BE dependenci
 
     cd server/ && npm install
 
-Create a self-signed OpenSSL certificate by running the following:
+Create a self-signed OpenSSL certificate by running the following (For dev testing purposes only, do not do this in prod):
 
     openssl genrsa -out key.pem 2048
     openssl req -new -key key.pem -out csr.pem

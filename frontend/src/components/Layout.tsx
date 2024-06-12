@@ -7,6 +7,7 @@ import {
   Spacer,
   VStack,
   Button,
+  Link,
 } from "@chakra-ui/react";
 import { HarborContainer } from "./HarborContainer";
 import { TidalWaterContext } from "../contexts/TidalWaterContext";
@@ -55,6 +56,14 @@ export const Layout = () => {
           ))}
         </VStack>
       </Box>
+      <Text fontSize="sm">
+        This app uses the MET Weather API by MET Norway. For more information,
+        visit{" "}
+        <Link href="https://api.met.no/" isExternal color="teal.500">
+          The MET Weather API
+        </Link>
+        .
+      </Text>
     </>
   );
 };

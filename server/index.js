@@ -29,21 +29,11 @@ async function initializeExpressServer() {
     redisCachingMiddleware({
       options: {
         EX: 43200, // 12h
+        // TODO: update logic to re-write after noon UTC
         NX: false, // write the data even if the key already exists
       },
     }),
     TidalwaterController.getTidalwaterData
-  );
-
-  app.get(
-    "/api/users/:harborName",
-    redisCachingMiddleware({
-      options: {
-        EX: 43200, // 12h
-        NX: false, // write the data even if the key already exists
-      },
-    }),
-    TidalwaterController.getUser
   );
 
   /**
