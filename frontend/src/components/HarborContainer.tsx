@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { TidalWaterContext } from "../contexts/TidalWaterContext";
+import { TidalWaterContext, HarborType } from "../contexts/TidalWaterContext";
 import { Button, Box, Select, Flex, Spacer, Text } from "@chakra-ui/react";
 import { harbors } from "../utils/constants";
 import { capitalize } from "../utils/capitalize";
 import { ChartArea } from "./ChartArea";
-import { MapView } from "./MapView";
+// import { MapView } from "./MapView";
 
 type HarborContainerProps = {
-  harbor: keyof typeof harbors;
+  harbor: HarborType;
   index: number;
 };
 
@@ -16,13 +16,20 @@ export const HarborContainer = ({ index, harbor }: HarborContainerProps) => {
     useContext(TidalWaterContext);
 
   return (
-    <Box h="350px" borderWidth={1} borderRadius="md" p={6}>
+    <Box
+      h="350px"
+      borderWidth={1}
+      borderRadius="md"
+      p={6}
+      data-testid={`harborContainer-${index + 1}`}
+    >
       <Flex mb={4} position="relative">
         <Select
           placeholder="Select a harbor"
           width="300px"
           value={harbor}
-          onChange={(e) => handleUpdate(index, e.target.value)}
+          onChange={(e) => handleUpdate(index, e.target.value as HarborType)}
+          data-testid="harborDropdown"
         >
           {Object.keys(harbors).map((harbor) => (
             <option key={harbor} value={harbor}>
@@ -37,7 +44,7 @@ export const HarborContainer = ({ index, harbor }: HarborContainerProps) => {
             Remove
           </Button>
         )}
-        {harbor && <MapView name={harbor} coordinates={harbors[harbor]} />}
+        {/* {harbor && <MapView name={harbor} coordinates={harbors[harbor]} />} */}
       </Flex>
       {harbor && <ChartArea harbor={harbor} />}
     </Box>

@@ -49,7 +49,7 @@ export const Layout = () => {
           Add
         </Button>
       </Flex>
-      <Box my={6} maxW="full" overflow="hidden">
+      <Box my={6} maxW="full" overflow="hidden" data-testid="harbors">
         <VStack spacing={4} align="stretch">
           {selectedHarbors.map((harbor, index) => (
             <HarborContainer key={index} index={index} harbor={harbor} />

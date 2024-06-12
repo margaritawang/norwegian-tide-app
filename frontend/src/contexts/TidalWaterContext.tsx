@@ -1,17 +1,20 @@
 import { createContext } from "react";
+import { harbors } from "../utils/constants";
+
+export type HarborType = keyof typeof harbors | "";
 
 type TidalWaterContextValues = {
-  selectedHarbors: string[];
-  setSelectedHarbors: (harbors: string[]) => void;
+  selectedHarbors: Array<HarborType>;
+  setSelectedHarbors: (newValues: Array<HarborType>) => void;
   syncViewEnabled: boolean;
   setSyncViewEnabled: (enabled: boolean) => void;
   handleAdd: () => void;
   handleRemove: (index: number) => void;
-  handleUpdate: (index: number, newValue: string) => void;
+  handleUpdate: (index: number, newValue: HarborType) => void;
 };
 
-const tidalWaterContextInitialValues: TidalWaterContextValues = {
-  selectedHarbors: [],
+export const tidalWaterContextInitialValues: TidalWaterContextValues = {
+  selectedHarbors: [""],
   setSelectedHarbors: () => {},
   syncViewEnabled: false,
   setSyncViewEnabled: () => {},

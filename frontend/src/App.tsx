@@ -2,7 +2,10 @@ import "./App.css";
 import { Layout } from "./components/Layout.tsx";
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { TidalWaterContext } from "./contexts/TidalWaterContext.tsx";
+import {
+  TidalWaterContext,
+  HarborType,
+} from "./contexts/TidalWaterContext.tsx";
 import { useState } from "react";
 
 const queryClient = new QueryClient({
@@ -16,7 +19,7 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const [selectedHarbors, setSelectedHarbors] = useState<string[]>([""]);
+  const [selectedHarbors, setSelectedHarbors] = useState<HarborType[]>([""]);
   const [syncViewEnabled, setSyncViewEnabled] = useState(false);
 
   const handleAdd = () => {
@@ -29,10 +32,10 @@ function App() {
     );
   };
 
-  const handleUpdate = (index: number, newValue: string) => {
+  const handleUpdate = (index: number, newValue: HarborType) => {
     setSelectedHarbors((prevValues) => {
-      const updatedValues = [...prevValues]; // Create a copy of the current state
-      updatedValues[index] = newValue; // Update the value at the specified index
+      const updatedValues = [...prevValues];
+      updatedValues[index] = newValue;
       return updatedValues;
     });
   };
