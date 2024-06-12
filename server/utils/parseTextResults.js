@@ -1,3 +1,5 @@
+const validateData = require("./validateData");
+
 function parseTextResults(textString) {
   // if unable to extract the dotted line, return false
   if (!textString.match(/-{30}/)) return false;
@@ -19,7 +21,12 @@ function parseTextResults(textString) {
 
     const obj = {};
     for (const i in keyArray) {
-      obj[keyArray[i]] = Number(valueArray[i]) || 0;
+      // return false if any field contains invalid data
+      const isValid = validateData(keyArray[i], valueArray[i]);
+      // console.log(keyArray[i], valueArray[i], isValid);
+      if (!isValid) return false;
+
+      obj[keyArray[i]] = Number(valueArray[i]);
     }
 
     result.push(obj);
