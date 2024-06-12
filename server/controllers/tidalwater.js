@@ -1,4 +1,4 @@
-const textToJson = require("../utils/textToJson");
+const parseTextResults = require("../utils/parseTextResults");
 const root_url = "https://api.met.no/weatherapi/tidalwater/1.1/";
 
 async function fetchApiData(harbor) {
@@ -9,15 +9,23 @@ async function fetchApiData(harbor) {
       "github.com/margaritawang/norwegian-tide-app margaritaawang@gmail.com",
   });
 
-  const externalResponse = await fetch(`${root_url}?harbor=${harbor}`, {
-    method: "GET",
-    headers,
-  });
+  try {
+    const externalResponse = await fetch(`${root_url}?harbor=${harbor}`, {
+      method: "GET",
+      headers,
+    });
 
-  const responseText = await externalResponse.text();
+    const responseText = await externalResponse.text();
 
-  const data = textToJson(responseText);
-  return data;
+    const data = parseTextResults(responseText);
+
+    if (data) return data;
+    else {
+      throw "Unable to parse api response";
+    }
+  } catch (e) {
+    throw e;
+  }
 }
 
 const TidalwaterController = {

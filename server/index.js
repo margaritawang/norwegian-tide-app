@@ -1,9 +1,9 @@
+require("dotenv").config();
 const express = require("express");
-const streamToJson = require("./utils/textToJson");
 const https = require("https");
 const fs = require("fs");
 const path = require("path");
-require("dotenv").config();
+
 const { TidalwaterController } = require("./controllers/tidalwater");
 const {
   initializeRedisClient,
@@ -26,13 +26,16 @@ async function initializeExpressServer() {
    */
   app.get(
     "/api/tidalwater/:harborName",
-    redisCachingMiddleware({
-      options: {
-        EX: 43200, // 12h
-        // TODO: update logic to re-write after noon UTC
-        NX: false, // write the data even if the key already exists
+    redisCachingMiddleware(
+      {
+        options: {
+          EX: 43200, // 12h
+          // TODO: update logic to re-write after noon UTC
+          NX: false, // write the data even if the key already exists
+        },
       },
-    }),
+      "harborName"
+    ),
     TidalwaterController.getTidalwaterData
   );
 

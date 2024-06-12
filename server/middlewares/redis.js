@@ -26,19 +26,19 @@ async function initializeRedisClient() {
 function redisCachingMiddleware(
   options = {
     EX: 21600, // 6h
-  }
+  },
+  key
 ) {
   return async (req, res, next) => {
-    const harbor = req.params.harborName;
+    const cacheKey = req.params[key];
 
     if (!!redisClient?.isOpen) {
       // if there is some cached data, retrieve it and return it
-      const cachedValue = await redisClient.get(harbor);
+      const cachedValue = await redisClient.get(cacheKey);
       if (cachedValue) {
         return res.json(JSON.parse(cachedValue));
       } else {
-        // override how res.send behaves
-        // to introduce the caching logic
+        // override the old res.send to introduce the caching logic
         const oldSend = res.send;
         res.send = async function (data) {
           // set the function back to avoid the 'double-send' effect
@@ -46,7 +46,7 @@ function redisCachingMiddleware(
 
           // cache the response only if it is successful
           if (res.statusCode.toString().startsWith("2")) {
-            await redisClient.set(harbor, data, options);
+            await redisClient.set(cacheKey, data, options);
           }
 
           return res.send(data);

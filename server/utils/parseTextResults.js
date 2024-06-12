@@ -1,4 +1,7 @@
-function textToJson(textString) {
+function parseTextResults(textString) {
+  // if unable to extract the dotted line, return false
+  if (!textString.match(/-{30}/)) return false;
+
   // trim dashed line and whitespace from the human-readable string
   const data = textString
     .split(/-{30}/)[1]
@@ -16,7 +19,7 @@ function textToJson(textString) {
 
     const obj = {};
     for (const i in keyArray) {
-      obj[keyArray[i]] = Number(valueArray[i]);
+      obj[keyArray[i]] = Number(valueArray[i]) || 0;
     }
 
     result.push(obj);
@@ -25,4 +28,4 @@ function textToJson(textString) {
   return result;
 }
 
-module.exports = textToJson;
+module.exports = parseTextResults;
