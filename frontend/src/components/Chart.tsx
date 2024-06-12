@@ -7,7 +7,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { useFormatedChartData } from "../hooks/useFormatedChartData";
+import { useFormattedChartData } from "../hooks/useFormattedChartData";
 import { TidalData } from "../api/types/TidalData";
 import { TidalWaterContext } from "../contexts/TidalWaterContext";
 import { useContext } from "react";
@@ -18,7 +18,7 @@ type ChartProps = {
 };
 
 export const Chart = ({ data, harbor }: ChartProps) => {
-  const formattedData = useFormatedChartData(data, harbor);
+  const formattedData = useFormattedChartData(data, harbor);
   const { syncViewEnabled } = useContext(TidalWaterContext);
   return (
     <ResponsiveContainer width="80%" height="80%">

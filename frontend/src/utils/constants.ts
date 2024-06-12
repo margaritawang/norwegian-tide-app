@@ -1,4 +1,4 @@
-const harborWithCoordinates = {
+const harborsWithCoordinates = {
   andenes: [16.1202, 69.3161],
   bergen: [5.3221, 60.3913],
   bodø: [14.4049, 67.2804],
@@ -33,4 +33,4 @@ const harborWithCoordinates = {
 
 /** More constants below */
 
-export { harborWithCoordinates as harbors };
+export { harborsWithCoordinates as harbors };
