@@ -4,7 +4,7 @@ import { Button, Box, Select, Flex, Spacer, Text } from "@chakra-ui/react";
 import { harbors } from "../utils/constants";
 import { capitalize } from "../utils/capitalize";
 import { ChartArea } from "./ChartArea";
-// import { MapView } from "./MapView";
+import { MapView } from "./MapView";
 
 type HarborContainerProps = {
   harbor: HarborType;
@@ -14,7 +14,7 @@ type HarborContainerProps = {
 export const HarborContainer = ({ index, harbor }: HarborContainerProps) => {
   const { selectedHarbors, handleUpdate, handleRemove } =
     useContext(TidalWaterContext);
-
+  console.log(process.env.NODE_ENV);
   return (
     <Box
       h="350px"
@@ -44,7 +44,7 @@ export const HarborContainer = ({ index, harbor }: HarborContainerProps) => {
             Remove
           </Button>
         )}
-        {/* {harbor && <MapView name={harbor} coordinates={harbors[harbor]} />} */}
+        {harbor && <MapView name={harbor} coordinates={harbors[harbor]} />}
       </Flex>
       {harbor && <ChartArea harbor={harbor} />}
     </Box>

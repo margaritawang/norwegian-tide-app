@@ -30,7 +30,7 @@ export const ChartArea = ({ harbor }: ChartAreaProps) => {
   }
 
   if (data) {
-    return <Chart data={data} harbor={harbor} />;
+    return <Chart data={data.data} harbor={harbor} />;
   }
 
   return null;

@@ -4,7 +4,6 @@ export default {
   transform: {
     "^.+\\.tsx?$": "ts-jest",
     "^.+\\.(js|jsx)$": "babel-jest",
-    // process `*.tsx` files with `ts-jest`
   },
   transformIgnorePatterns: [
     "/node_modules/(?!(ol|labelgun|mapbox-to-ol-style|ol-mapbox-style)/).*/",

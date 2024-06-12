@@ -36,7 +36,7 @@ const TidalwaterController = {
 
     try {
       results = await fetchApiData(harbor);
-      res.json(results);
+      res.json({ data: results });
     } catch (e) {
       console.error(e);
       res.status(404).send("Data unavailable");

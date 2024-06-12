@@ -36,7 +36,7 @@ function redisCachingMiddleware(
       // if there is some cached data, retrieve it and return it
       const cachedValue = await redisClient.get(cacheKey);
       if (cachedValue) {
-        return res.json(JSON.parse(cachedValue));
+        return res.json({ data: JSON.parse(cachedValue) });
       } else {
         // override the old res.send to introduce the caching logic
         const oldSend = res.send;
