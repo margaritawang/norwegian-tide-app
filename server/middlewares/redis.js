@@ -46,7 +46,7 @@ function redisCachingMiddleware(
 
           // cache the response only if it is successful
           if (res.statusCode.toString().startsWith("2")) {
-            await redisClient.set(cacheKey, data, options);
+            await redisClient.set(cacheKey, data.data, options);
           }
 
           return res.send(data);
